@@ -3,7 +3,7 @@
     import "github.com/MJKWoolnough/rwcount"
 
 Package rwcount implements a simple counter that wraps an io.Reader or io.Writer.
-Userful for functions (like binary.Read/Write) which do not return read/write counts.
+Useful for functions (like binary.Read/Write) which do not return read/write counts.
 
 ## Usage
 
