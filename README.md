@@ -20,10 +20,9 @@ Used to wrap a io.Reader for counting
 #### func (CountReader) BytesRead
 
 ```go
-func (c CountReader) BytesRead(d *int64)
+func (c CountReader) BytesRead() int64
 ```
-Sets given argument to number of bytes read. Pointer argument allows for it to
-be used with defer and named arguments
+Returns the number of bytes read
 
 #### type CountWriter
 
@@ -38,8 +37,7 @@ Used to wrap a io.Writer for counting
 #### func (CountWriter) BytesWritten
 
 ```go
-func (c CountWriter) BytesWritten(d *int64)
+func (c CountWriter) BytesWritten() int64
 ```
-Sets given argument to number of bytes written. Pointer argument allows for it
-to be used with defer and named arguments
+Returns the number of bytes written
 

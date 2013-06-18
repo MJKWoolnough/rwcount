@@ -40,10 +40,9 @@ func (c *CountReader) Read(d []byte) (total int, err error) {
 	return
 }
 
-// Sets given argument to number of bytes read. Pointer argument allows for it to be used
-// with defer and named arguments
-func (c CountReader) BytesRead(d *int64) {
-	*d = c.bytesRead
+// Returns the number of bytes read
+func (c CountReader) BytesRead() int64 {
+	return c.bytesRead
 }
 
 // Used to wrap a io.Writer for counting
@@ -58,8 +57,7 @@ func (c *CountWriter) Write(d []byte) (total int, err error) {
 	return
 }
 
-// Sets given argument to number of bytes written. Pointer argument allows for it to be used
-// with defer and named arguments
-func (c CountWriter) BytesWritten(d *int64) {
-	*d = c.bytesWritten
+// Returns the number of bytes written
+func (c CountWriter) BytesWritten() int64 {
+	return c.bytesWritten
 }
