@@ -4,7 +4,7 @@ package rwcount
 
 import "io"
 
-// Used to wrap a io.Reader for counting
+// CountReader is used to wrap a io.Reader for counting
 type CountReader struct {
 	io.Reader
 	bytesRead int64
@@ -16,12 +16,12 @@ func (c *CountReader) Read(d []byte) (total int, err error) {
 	return
 }
 
-// Returns the number of bytes read
+// BytesRead returns the number of bytes read
 func (c CountReader) BytesRead() int64 {
 	return c.bytesRead
 }
 
-// Used to wrap a io.Writer for counting
+// CountWriter is used to wrap a io.Writer for counting
 type CountWriter struct {
 	io.Writer
 	bytesWritten int64
@@ -33,7 +33,7 @@ func (c *CountWriter) Write(d []byte) (total int, err error) {
 	return
 }
 
-// Returns the number of bytes written
+// BytesWritten returns the number of bytes written
 func (c CountWriter) BytesWritten() int64 {
 	return c.bytesWritten
 }
