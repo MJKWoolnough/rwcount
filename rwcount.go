@@ -8,12 +8,19 @@ import "io"
 type CountReader struct {
 	io.Reader
 	bytesRead int64
+	StickyErr bool
+	Err       error
 }
 
-func (c *CountReader) Read(d []byte) (total int, err error) {
-	total, err = c.Reader.Read(d)
+// Read implements the io.Reader interface
+func (c *CountReader) Read(d []byte) (int, error) {
+	if c.StickyErr && c.Err != nil {
+		return 0, c.Err
+	}
+	total, err := c.Reader.Read(d)
 	c.bytesRead += int64(total)
-	return
+	c.Err = err
+	return total, err
 }
 
 // BytesRead returns the number of bytes read
@@ -25,11 +32,18 @@ func (c CountReader) BytesRead() int64 {
 type CountWriter struct {
 	io.Writer
 	bytesWritten int64
+	StickyErr    bool
+	Err          error
 }
 
-func (c *CountWriter) Write(d []byte) (total int, err error) {
-	total, err = c.Writer.Write(d)
+// Write implements the io.Writer interface
+func (c *CountWriter) Write(d []byte) (int, error) {
+	if c.StickyErr && c.Err != nil {
+		return 0, c.Err
+	}
+	total, err := c.Writer.Write(d)
 	c.bytesWritten += int64(total)
+	c.Err = err
 	return
 }
 
