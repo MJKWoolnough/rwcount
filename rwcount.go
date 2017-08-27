@@ -7,7 +7,7 @@ import "io"
 // CountReader is used to wrap a io.Reader for counting
 type CountReader struct {
 	io.Reader
-	bytesRead int64
+	BytesRead int64
 	Err       error
 }
 
@@ -17,20 +17,15 @@ func (c *CountReader) Read(d []byte) (int, error) {
 		return 0, c.Err
 	}
 	total, err := c.Reader.Read(d)
-	c.bytesRead += int64(total)
+	c.BytesRead += int64(total)
 	c.Err = err
 	return total, err
-}
-
-// BytesRead returns the number of bytes read
-func (c CountReader) BytesRead() int64 {
-	return c.bytesRead
 }
 
 // CountWriter is used to wrap a io.Writer for counting
 type CountWriter struct {
 	io.Writer
-	bytesWritten int64
+	BytesWritten int64
 	Err          error
 }
 
@@ -40,12 +35,7 @@ func (c *CountWriter) Write(d []byte) (int, error) {
 		return 0, c.Err
 	}
 	total, err := c.Writer.Write(d)
-	c.bytesWritten += int64(total)
+	c.BytesWritten += int64(total)
 	c.Err = err
 	return total, err
-}
-
-// BytesWritten returns the number of bytes written
-func (c CountWriter) BytesWritten() int64 {
-	return c.bytesWritten
 }

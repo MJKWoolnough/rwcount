@@ -13,19 +13,12 @@ read/write counts.
 ```go
 type CountReader struct {
 	io.Reader
-
-	Err error
+	BytesRead int64
+	Err       error
 }
 ```
 
 CountReader is used to wrap a io.Reader for counting
-
-#### func (CountReader) BytesRead
-
-```go
-func (c CountReader) BytesRead() int64
-```
-BytesRead returns the number of bytes read
 
 #### func (*CountReader) Read
 
@@ -39,19 +32,12 @@ Read implements the io.Reader interface
 ```go
 type CountWriter struct {
 	io.Writer
-
-	Err error
+	BytesWritten int64
+	Err          error
 }
 ```
 
 CountWriter is used to wrap a io.Writer for counting
-
-#### func (CountWriter) BytesWritten
-
-```go
-func (c CountWriter) BytesWritten() int64
-```
-BytesWritten returns the number of bytes written
 
 #### func (*CountWriter) Write
 
