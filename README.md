@@ -8,29 +8,29 @@ read/write counts.
 
 ## Usage
 
-#### type CountReader
+#### type Reader
 
 ```go
-type CountReader struct {
+type Reader struct {
 	io.Reader
 	Count int64
 	Err   error
 }
 ```
 
-CountReader is used to wrap a io.Reader for counting
+Reader is used to wrap a io.Reader for counting
 
-#### func (*CountReader) Read
+#### func (*Reader) Read
 
 ```go
-func (c *CountReader) Read(d []byte) (int, error)
+func (c *Reader) Read(d []byte) (int, error)
 ```
 Read implements the io.Reader interface
 
-#### type CountWriter
+#### type Writer
 
 ```go
-type CountWriter struct {
+type Writer struct {
 	io.Writer
 	Count int64
 	Err   error
@@ -39,9 +39,9 @@ type CountWriter struct {
 
 CountWriter is used to wrap a io.Writer for counting
 
-#### func (*CountWriter) Write
+#### func (*Writer) Write
 
 ```go
-func (c *CountWriter) Write(d []byte) (int, error)
+func (c *Writer) Write(d []byte) (int, error)
 ```
 Write implements the io.Writer interface

@@ -4,15 +4,15 @@ package rwcount // import "vimagination.zapto.org/rwcount"
 
 import "io"
 
-// CountReader is used to wrap a io.Reader for counting
-type CountReader struct {
+// Reader is used to wrap a io.Reader for counting
+type Reader struct {
 	io.Reader
 	Count int64
 	Err   error
 }
 
 // Read implements the io.Reader interface
-func (c *CountReader) Read(d []byte) (int, error) {
+func (c *Reader) Read(d []byte) (int, error) {
 	if c.Err != nil {
 		return 0, c.Err
 	}
@@ -23,14 +23,14 @@ func (c *CountReader) Read(d []byte) (int, error) {
 }
 
 // CountWriter is used to wrap a io.Writer for counting
-type CountWriter struct {
+type Writer struct {
 	io.Writer
 	Count int64
 	Err   error
 }
 
 // Write implements the io.Writer interface
-func (c *CountWriter) Write(d []byte) (int, error) {
+func (c *Writer) Write(d []byte) (int, error) {
 	if c.Err != nil {
 		return 0, c.Err
 	}
