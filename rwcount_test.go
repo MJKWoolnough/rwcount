@@ -16,13 +16,13 @@ type Writer interface {
 func read(from Reader, data []byte) (total int64, read int) {
 	cR := &CountReader{Reader: from}
 	read, _ = cR.Read(data)
-	return cR.BytesRead, read
+	return cR.Count, read
 }
 
 func write(to Writer, data []byte) (total int64, written int) {
 	cW := &CountWriter{Writer: to}
 	written, _ = cW.Write(data)
-	return cW.BytesWritten, written
+	return cW.Count, written
 }
 
 func TestCounts(t *testing.T) {

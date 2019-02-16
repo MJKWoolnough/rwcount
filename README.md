@@ -1,6 +1,6 @@
 # rwcount
 --
-    import "github.com/MJKWoolnough/rwcount"
+    import "vimagination.zapto.org/rwcount"
 
 Package rwcount implements a simple counter that wraps an io.Reader or
 io.Writer. Useful for functions (like binary.Read/Write) which do not return
@@ -13,8 +13,8 @@ read/write counts.
 ```go
 type CountReader struct {
 	io.Reader
-	BytesRead int64
-	Err       error
+	Count int64
+	Err   error
 }
 ```
 
@@ -32,8 +32,8 @@ Read implements the io.Reader interface
 ```go
 type CountWriter struct {
 	io.Writer
-	BytesWritten int64
-	Err          error
+	Count int64
+	Err   error
 }
 ```
 
