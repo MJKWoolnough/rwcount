@@ -22,7 +22,7 @@ func (c *Reader) Read(d []byte) (int, error) {
 	return total, err
 }
 
-// CountWriter is used to wrap a io.Writer for counting
+// Writer is used to wrap a io.Writer for counting
 type Writer struct {
 	io.Writer
 	Count int64

@@ -37,7 +37,7 @@ type Writer struct {
 }
 ```
 
-CountWriter is used to wrap a io.Writer for counting
+Writer is used to wrap a io.Writer for counting
 
 #### func (*Writer) Write
 
