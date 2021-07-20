@@ -45,7 +45,7 @@ func (c *Writer) WriteString(s string) (int, error) {
 	if c.Err != nil {
 		return 0, c.Err
 	}
-	total, err := io.WriteString(c.Writer.Write, s)
+	total, err := io.WriteString(c.Writer, s)
 	c.Count += int64(total)
 	c.Err = err
 	return total, err
