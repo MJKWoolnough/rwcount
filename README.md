@@ -45,3 +45,10 @@ Writer is used to wrap a io.Writer for counting
 func (c *Writer) Write(d []byte) (int, error)
 ```
 Write implements the io.Writer interface
+
+#### func (*Writer) WriteString
+
+```go
+func (c *Writer) WriteString(s string) (int, error)
+```
+WriteString implements the io.StringWriter interface
