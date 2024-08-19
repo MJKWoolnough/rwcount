@@ -18,14 +18,14 @@ type Reader struct {
 }
 ```
 
-Reader is used to wrap a io.Reader for counting
+Reader is used to wrap a io.Reader for counting.
 
 #### func (*Reader) Read
 
 ```go
 func (c *Reader) Read(d []byte) (int, error)
 ```
-Read implements the io.Reader interface
+Read implements the io.Reader interface.
 
 #### type Writer
 
@@ -37,18 +37,18 @@ type Writer struct {
 }
 ```
 
-Writer is used to wrap a io.Writer for counting
+Writer is used to wrap a io.Writer for counting.
 
 #### func (*Writer) Write
 
 ```go
 func (c *Writer) Write(d []byte) (int, error)
 ```
-Write implements the io.Writer interface
+Write implements the io.Writer interface.
 
 #### func (*Writer) WriteString
 
 ```go
 func (c *Writer) WriteString(s string) (int, error)
 ```
-WriteString implements the io.StringWriter interface
+WriteString implements the io.StringWriter interface.
