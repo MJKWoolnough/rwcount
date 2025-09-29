@@ -1,54 +1,71 @@
 # rwcount
+
+[![CI](https://github.com/MJKWoolnough/rwcount/actions/workflows/go-checks.yml/badge.svg)](https://github.com/MJKWoolnough/rwcount/actions)
+[![Go Reference](https://pkg.go.dev/badge/vimagination.zapto.org/rwcount.svg)](https://pkg.go.dev/vimagination.zapto.org/rwcount)
+[![Go Report Card](https://goreportcard.com/badge/vimagination.zapto.org/rwcount)](https://goreportcard.com/report/vimagination.zapto.org/rwcount)
+
 --
     import "vimagination.zapto.org/rwcount"
 
-Package rwcount implements a simple counter that wraps an io.Reader or
-io.Writer. Useful for functions (like binary.Read/Write) which do not return
-read/write counts.
+Package rwcount implements a simple counter that wraps an io.Reader or io.Writer.
+
+Useful for functions (like binary.Read/Write) which do not return read/write counts.
+
+## Highlights
+
+ - Wrap any `io.Reader` or `io.Writer`.
+ - Keeps track of bytes read/written.
+ - First error is stored and future reads/writes will all return that error.
 
 ## Usage
 
-#### type Reader
-
 ```go
-type Reader struct {
-	io.Reader
-	Count int64
-	Err   error
+package main
+
+import (
+	"bytes"
+	"encoding/binary"
+	"fmt"
+
+	"vimagination.zapto.org/rwcount"
+)
+
+func main() {
+	var (
+		buf    bytes.Buffer
+		result uint16
+	)
+
+	writer := &rwcount.Writer{Writer: &buf}
+
+	binary.Write(writer, binary.LittleEndian, uint16(1234))
+
+	reader := &rwcount.Reader{Reader: &buf}
+	binary.Read(reader, binary.LittleEndian, &result)
+
+	fmt.Printf("Wrote bytes: %d\n"+
+		"Write error: %v\n"+
+		"Read bytes: %d\n"+
+		"Read error: %v\n"+
+		"Read value: %d\n",
+		writer.Count,
+		writer.Err,
+		reader.Count,
+		reader.Err,
+		result,
+	)
+
+	// Output:
+	// Wrote bytes: 2
+	// Write error: <nil>
+	// Read bytes: 2
+	// Read error: <nil>
+	// Read value: 1234
 }
 ```
 
-Reader is used to wrap a io.Reader for counting.
+## Documentation
 
-#### func (*Reader) Read
+Full API docs can be found at:
 
-```go
-func (c *Reader) Read(d []byte) (int, error)
-```
-Read implements the io.Reader interface.
-
-#### type Writer
-
-```go
-type Writer struct {
-	io.Writer
-	Count int64
-	Err   error
-}
-```
-
-Writer is used to wrap a io.Writer for counting.
-
-#### func (*Writer) Write
-
-```go
-func (c *Writer) Write(d []byte) (int, error)
-```
-Write implements the io.Writer interface.
-
-#### func (*Writer) WriteString
-
-```go
-func (c *Writer) WriteString(s string) (int, error)
-```
-WriteString implements the io.StringWriter interface.
+https://pkg.go.dev/vimagination.zapto.org/rwcount
