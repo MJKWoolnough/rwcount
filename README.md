@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/MJKWoolnough/rwcount/actions/workflows/go-checks.yml/badge.svg)](https://github.com/MJKWoolnough/rwcount/actions)
 [![Go Reference](https://pkg.go.dev/badge/vimagination.zapto.org/rwcount.svg)](https://pkg.go.dev/vimagination.zapto.org/rwcount)
-[![Go Report Card](https://goreportcard.com/badge/vimagination.zapto.org/rwcount)](https://goreportcard.com/report/vimagination.zapto.org/rwcount)
 
 --
     import "vimagination.zapto.org/rwcount"
